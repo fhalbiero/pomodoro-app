@@ -1,5 +1,6 @@
 {
   "name": "pomodoro-app",
+  "homepage": "https://fhalbiero.github.io/pomodoro-app/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -11,6 +12,7 @@
     "react-scripts": "3.4.0"
   },
   "scripts": {
+    "deploy": "npm run build && gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -30,5 +32,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^2.2.0"
   }
 }
