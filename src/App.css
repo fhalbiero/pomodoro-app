@@ -1,38 +1,137 @@
-.App {
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+* {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.2rem;
+  color: #333;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  height: 80vh;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  background-color: #efefef;
+}
+
+.app {
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 15px;
+  width: 600px;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.todo-list {
+  margin-bottom: 40px;
+
+}
+
+.msg {
+  width: 100%;
   text-align: center;
+  font-size: 1.2rem;
+  color: #999;
+  margin-top: 10px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.todo-list__header {
+  display: flex;
+  justify-content: space-between;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.pomodoro {
+  text-align: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  
 }
 
-.App-link {
-  color: #61dafb;
+.header span {
+  font-size: 1.7rem;
+  font-weight: 900;
+  color: #666;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.timer {
+  display: flex;
+  justify-content: center;
+  width: 90%;
+  padding: 20px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.timer span {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.buttons {
+  display: flex;
+  width: 90%;
+  justify-content: space-between;
+}
+
+input, select {
+  border: 1px solid #cfcfcf;
+  padding: 5px;
+  color: #666;
+  font-size: 1rem;
+  border-radius: 5px;
+}
+
+.input-todo {
+  width: 80%;
+}
+
+button {
+  border: none;
+  background-color: rgb(65, 71, 73);
+  padding: 5px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #fff;
+  text-transform: uppercase;
+  transition: all .3s;
+}
+button:hover {
+  background-color: rgb(121, 141, 250);
+}
+
+.todo {
+  display: flex;
+  justify-content: space-between;
+  background-color: #efefef;
+  padding: 6px 10px;
+  margin-top: 8px;
+}
+
+.progress {
+  background-color: rgb(152, 247, 247);
+  width: 0%;
+  position: relative;
+}
+
+.todo span {
+  position: absolute;
+  font-size: 0.8rem;
+}
+
+.delete-button {
+  background-color: crimson;
+  font-size: 0.7rem;
+  color: #fff;
+  border-radius: 15px;
+  padding: 5px 9px;
 }
