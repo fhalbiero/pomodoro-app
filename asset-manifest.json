@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/static/css/main.eb4a9d72.chunk.css",
-    "main.js": "/static/js/main.3f6253e0.chunk.js",
-    "main.js.map": "/static/js/main.3f6253e0.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.0a64c467.js",
-    "runtime-main.js.map": "/static/js/runtime-main.0a64c467.js.map",
-    "static/js/2.2d239585.chunk.js": "/static/js/2.2d239585.chunk.js",
-    "static/js/2.2d239585.chunk.js.map": "/static/js/2.2d239585.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.52ad77cc14ce8a690b12fe767e39c388.js": "/precache-manifest.52ad77cc14ce8a690b12fe767e39c388.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/main.eb4a9d72.chunk.css.map": "/static/css/main.eb4a9d72.chunk.css.map",
-    "static/js/2.2d239585.chunk.js.LICENSE.txt": "/static/js/2.2d239585.chunk.js.LICENSE.txt",
-    "static/media/finish.mp3": "/static/media/finish.d6040c63.mp3",
-    "static/media/start.mp3": "/static/media/start.b76b0645.mp3"
+    "main.css": "/pomodoro-app/static/css/main.eb4a9d72.chunk.css",
+    "main.js": "/pomodoro-app/static/js/main.3f6253e0.chunk.js",
+    "main.js.map": "/pomodoro-app/static/js/main.3f6253e0.chunk.js.map",
+    "runtime-main.js": "/pomodoro-app/static/js/runtime-main.ca24fecb.js",
+    "runtime-main.js.map": "/pomodoro-app/static/js/runtime-main.ca24fecb.js.map",
+    "static/js/2.2d239585.chunk.js": "/pomodoro-app/static/js/2.2d239585.chunk.js",
+    "static/js/2.2d239585.chunk.js.map": "/pomodoro-app/static/js/2.2d239585.chunk.js.map",
+    "index.html": "/pomodoro-app/index.html",
+    "precache-manifest.733f99acaf41773efa11e54eca55d764.js": "/pomodoro-app/precache-manifest.733f99acaf41773efa11e54eca55d764.js",
+    "service-worker.js": "/pomodoro-app/service-worker.js",
+    "static/css/main.eb4a9d72.chunk.css.map": "/pomodoro-app/static/css/main.eb4a9d72.chunk.css.map",
+    "static/js/2.2d239585.chunk.js.LICENSE.txt": "/pomodoro-app/static/js/2.2d239585.chunk.js.LICENSE.txt",
+    "static/media/finish.mp3": "/pomodoro-app/static/media/finish.d6040c63.mp3",
+    "static/media/start.mp3": "/pomodoro-app/static/media/start.b76b0645.mp3"
   },
   "entrypoints": [
-    "static/js/runtime-main.0a64c467.js",
+    "static/js/runtime-main.ca24fecb.js",
     "static/js/2.2d239585.chunk.js",
     "static/css/main.eb4a9d72.chunk.css",
     "static/js/main.3f6253e0.chunk.js"
