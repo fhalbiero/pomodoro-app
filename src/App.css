@@ -105,6 +105,7 @@ button {
   text-transform: uppercase;
   transition: all .3s;
 }
+
 button:hover {
   background-color: rgb(121, 141, 250);
 }
@@ -134,4 +135,62 @@ button:hover {
   color: #fff;
   border-radius: 15px;
   padding: 5px 9px;
+}
+
+
+
+.dial {
+  height: 200px;
+  width: 200px;
+}
+
+.timer {
+  position: relative;
+  display: inline-block;
+}
+
+
+.timer input {
+  display: block;
+  border: none;
+  width: 240px;
+  font-size: 90px;
+  text-align: center;
+}
+
+.timer button {
+  border: none;
+  font-size: 36px;
+  cursor: pointer;
+}
+
+
+
+.timer button:focus {
+  outline: none;
+}
+
+.timer input:focus {
+  outline: none;
+}
+
+.controls {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.control-button {
+  background-color: rgba(113, 10, 248, .4);
+
+}
+
+.icon {
+  font-size: 2rem;
 }

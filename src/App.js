@@ -3,7 +3,8 @@ import './App.css';
 import beepStart from './resources/start.mp3';
 import beepFinish from './resources/finish.mp3';
 
-import Todo from './todo';
+import Timer from './components/Timer';
+import Todo from './components/Todo';
 
 
 class App extends React.Component {
@@ -129,6 +130,8 @@ class App extends React.Component {
             <option value='45'>45 Minutes - 15 rest</option>
           </select>
         </div>
+
+        <Timer />
         
 
         <div className="todo-list">
