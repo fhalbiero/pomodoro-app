@@ -5,6 +5,8 @@
   font-size: 1.2rem;
   color: #333;
   box-sizing: border-box;
+  padding:0;
+  margin:0;
 }
 
 body {
@@ -13,7 +15,6 @@ body {
   width: 100%;
   justify-content: center;
   align-items: center;
-  background-color: #efefef;
 }
 
 .app {
@@ -140,13 +141,14 @@ button:hover {
 
 
 .dial {
-  height: 200px;
-  width: 200px;
+  height: 300px;
+  width: 300px;
 }
 
 .timer {
   position: relative;
-  display: inline-block;
+  display: flex;
+  margin: auto;
 }
 
 
@@ -154,17 +156,17 @@ button:hover {
   display: block;
   border: none;
   width: 240px;
-  font-size: 90px;
+  font-size: 2.8rem;
   text-align: center;
+  margin-bottom: .5rem;
+  background-color: transparent;
 }
 
 .timer button {
   border: none;
-  font-size: 36px;
+  font-size: 1.6rem;
   cursor: pointer;
 }
-
-
 
 .timer button:focus {
   outline: none;
@@ -176,10 +178,7 @@ button:hover {
 
 .controls {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  margin: 70px auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -187,10 +186,14 @@ button:hover {
 }
 
 .control-button {
-  background-color: rgba(113, 10, 248, .4);
-
-}
+  display: flexbox;
+  align-items: center;
+  padding: 2px 8px;
+  margin: 10px;
+  background-color: rgba(13, 238, 200, 0.8);
+  border-radius: 50%;
+ }
 
 .icon {
-  font-size: 2rem;
+  font-size: 1.2rem;
 }

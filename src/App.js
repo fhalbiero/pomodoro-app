@@ -131,7 +131,7 @@ class App extends React.Component {
           </select>
         </div>
 
-        <Timer />
+        <Timer totalDuration={45}/>
         
 
         <div className="todo-list">

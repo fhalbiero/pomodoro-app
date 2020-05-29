@@ -1,27 +1,85 @@
-import React from 'react';
-import { IoIosPlay, IoIosPause, IoIosRefresh} from 'react-icons/io';
+import React, { useState } from 'react';
+import { IoIosPlay, IoIosPause, IoIosRefresh } from 'react-icons/io';
 
 
-export default function Timer() {
+export default function Timer({totalDuration}) {
+
+    const [ duration, setDuration ] = useState(totalDuration);
+    const [ intervalId, setIntervalId ] = useState(); 
+    const [ timeRemaining, setTimeRemaining ] = useState(totalDuration);
+
+    const radius = 140;
+    const initialPerimeter = radius * 2 * Math.PI;
+    const [ perimeter, setPerimeter ] = useState( initialPerimeter );
+
+    //time.toFixed(2)
+    function onStart(totalDuration) {
+        setDuration(totalDuration);
+        onTick();
+        const id = setInterval(onTick, 50 );
+        setIntervalId(id)
+    }
+
+    function onComplete() {
+        console.log('Timer is completed');
+    }
+
+    function onPause() {
+        clearInterval(intervalId);
+    }
+
+    function onTick() {
+        if (timeRemaining <= 0) {
+            onPause();
+            onComplete();
+            return;
+        }
+
+        setTimeRemaining(timeRemaining - 0.050);     
+        setPerimeter(perimeter * timeRemaining / duration - perimeter);
+    }
+
+    function getTimeRemaining(e) {
+        return parseFloat(e.target.value);
+    }
+
+    function onRefresh() {
+        setDuration(totalDuration);
+        setPerimeter(initialPerimeter);
+    }
+
 
     return (
         <div className="timer">
             <div className="controls">
-                <input id="duration" value="3" />
+                <input value={timeRemaining} onChange={getTimeRemaining} />
                 <div>
-                    <button id="start" className="control-button"><IoIosPlay className="icon"/></button>
-                    <button id="pause" className="control-button"><IoIosPause className="icon"/></button>
-                    <button id="refresh" className="control-button"><IoIosRefresh className="icon"/></button>
+                    <button 
+                        className="control-button"
+                        onClick={onStart}>
+                        <IoIosPlay className="icon"/>
+                    </button>
+                    <button 
+                        className="control-button"
+                        onClick={onPause}>
+                        <IoIosPause className="icon"/>
+                    </button>
+                    <button 
+                        className="control-button"
+                        onClick={onRefresh}>
+                        <IoIosRefresh className="icon"/>
+                    </button>
                 </div>
             </div>
             <svg className="dial">
             <circle
                 fill="transparent"
-                stroke="rgba(13, 238, 200, 0.6)"
+                stroke="rgba(13, 238, 200, 0.5)"
                 stroke-width="8"
-                r="90"
-                cx="100"
-                cy="100"
+                stroke-dasharray={perimeter}
+                r={radius}
+                cx="50"
+                cy="150"
                 transform="rotate(-90 100 100)"
             />
             </svg>
@@ -31,18 +89,18 @@ export default function Timer() {
 
 /**class Timer {
     constructor(durationInput, startButton, pauseButton, callbacks) {
-        this.durationInput = durationInput;
-        this.startButton = startButton;
-        this.pauseButton = pauseButton;
+        durationInput = durationInput;
+        startButton = startButton;
+        pauseButton = pauseButton;
 
         if (callbacks) {
-            this.onStart = callbacks.onStart;
-            this.onTick = callbacks.onTick;
-            this.onComplete = callbacks.onComplete;
+            onStart = callbacks.onStart;
+            onTick = callbacks.onTick;
+            onComplete = callbacks.onComplete;
         }
 
-        this.startButton.addEventListener('click', this.start);
-        this.pauseButton.addEventListener('click', this.pause);
+        startButton.addEventListener('click', start);
+        pauseButton.addEventListener('click', pause);
     }
 
     start = () => {
