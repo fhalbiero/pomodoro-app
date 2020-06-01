@@ -1,22 +1,122 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 import { IoIosPlay, IoIosPause, IoIosRefresh } from 'react-icons/io';
+import beepStart from '../resources/start.mp3';
+import beepFinish from '../resources/finish.mp3';
 
 
-export default function Timer({totalDuration}) {
+export default class Timer extends Component {
+
+    radius = 140;
+    initialPerimeter = 280 * Math.PI;// (this.radius * 2 * Math.PI);
+    speed = 50; //in miliseconds
+    soundStart = new Audio(beepStart);
+    soundFinish = new Audio(beepFinish);
+
+    state = {
+        duration: this.props.sectionTime,
+        minutes: this.props.sectionTime,
+        seconds: 0,
+        intervalId: 0,
+        timeRemaining: this.props.sectionTime * 60,
+        perimeter: this.initialPerimeter,
+        isStoped: true,
+        isBreakTime: false
+    }
+    
+    
+    start = () => {
+       /*  if (this.state.todos.length === 0) {
+          alert("please, insert a new task.");
+          return;
+        } */ 
+        if (this.state.isStoped) {
+          const id = setInterval(this.decrement, this.speed);
+          this.setState({
+                intervalId: id, 
+                isStoped: false,
+                duration: this.props.sectionTime,
+                minutes: this.props.sectionTime,
+                seconds: 0,
+                timeRemaining: this.props.sectionTime * 60
+            });
+          this.soundStart.play();
+        }    
+    }
+    
+    
+    decrement = () => {
+        const { minutes, seconds, isBreakTime, 
+                perimeter, timeRemaining, duration } = this.state;
+
+            console.log(timeRemaining, duration, perimeter);
+
+        if (seconds === 0) {
+          if (minutes === 0) {
+            if (isBreakTime) {
+              this.reset();
+              /* this.deleteTodo(0);
+              if (todos.length > 1) {
+                this.start();
+              } */
+            } else {
+                this.setState({
+                    isBreakTime: true, 
+                    seconds: 0, 
+                    munutes: this.props.breakTime,
+                    duration: this.props.breakTime,
+                    timeRemaining: this.props.breakTime * 60
+                })
+                this.soundFinish.play();
+            }
+            
+          } else {
+              this.setState({seconds: 59, minutes: minutes - 1});
+          }
+        } else {
+            this.setState({
+                seconds: seconds - 1,
+                timeRemaining: timeRemaining - 1,
+                perimeter: perimeter * timeRemaining / duration - perimeter
+            });
+        }
+    }
+    
+    stop = () => {
+        clearInterval(this.state.intervalId);
+        this.setState({isStoped: true});
+        //muda cor
+        this.soundFinish.play();
+    }
+    
+    reset = () => {
+        const { sectionTime, minutes } = this.state;
+        this.stop();
+        this.setState({
+            secctionTime: sectionTime, 
+            minutes: minutes - 1,
+            secondes: 0,
+            perimeter: this.initialPerimeter
+        });
+    }
+
+   /*  const radius = 140;
+    const initialPerimeter = (radius * 2 * Math.PI);
+    const speed = 3000; //in miliseconds
+    const soundStart = new Audio(beepStart);
+    const soundFinish = new Audio(beepFinish);
 
     const [ duration, setDuration ] = useState(totalDuration);
     const [ intervalId, setIntervalId ] = useState(); 
     const [ timeRemaining, setTimeRemaining ] = useState(totalDuration);
-
-    const radius = 140;
-    const initialPerimeter = radius * 2 * Math.PI;
     const [ perimeter, setPerimeter ] = useState( initialPerimeter );
 
     //time.toFixed(2)
     function onStart(totalDuration) {
+        onPause();
         setDuration(totalDuration);
+        setTimeRemaining(duration);
         onTick();
-        const id = setInterval(onTick, 50 );
+        const id = setInterval(onTick, speed );
         setIntervalId(id)
     }
 
@@ -34,57 +134,63 @@ export default function Timer({totalDuration}) {
             onComplete();
             return;
         }
+        const remaining = timeRemaining - 1// (speed / 100);
+        const per = perimeter * remaining / duration - perimeter;
 
-        setTimeRemaining(timeRemaining - 0.050);     
-        setPerimeter(perimeter * timeRemaining / duration - perimeter);
+        console.log(remaining, per);
+        setTimeRemaining(remaining.toFixed(2));     
+        setPerimeter(per);
     }
 
     function getTimeRemaining(e) {
-        return parseFloat(e.target.value);
+        setTimeRemaining(parseFloat(e.target.value));
     }
 
     function onRefresh() {
         setDuration(totalDuration);
         setPerimeter(initialPerimeter);
-    }
+    } */
 
+    render() {
 
-    return (
-        <div className="timer">
-            <div className="controls">
-                <input value={timeRemaining} onChange={getTimeRemaining} />
-                <div>
-                    <button 
-                        className="control-button"
-                        onClick={onStart}>
-                        <IoIosPlay className="icon"/>
-                    </button>
-                    <button 
-                        className="control-button"
-                        onClick={onPause}>
-                        <IoIosPause className="icon"/>
-                    </button>
-                    <button 
-                        className="control-button"
-                        onClick={onRefresh}>
-                        <IoIosRefresh className="icon"/>
-                    </button>
+        const { minutes, seconds, perimeter } = this.state;
+        
+        return (
+            <div className="timer">
+                <div className="controls">
+                    <input value={`${minutes}:${seconds}`} />
+                    <div>
+                        <button 
+                            className="control-button"
+                            onClick={this.start}>
+                            <IoIosPlay className="icon"/>
+                        </button>
+                        <button 
+                            className="control-button"
+                            onClick={this.stop}>
+                            <IoIosPause className="icon"/>
+                        </button>
+                        <button 
+                            className="control-button"
+                            onClick={this.reset}>
+                            <IoIosRefresh className="icon"/>
+                        </button>
+                    </div>
                 </div>
-            </div>
-            <svg className="dial">
-            <circle
-                fill="transparent"
-                stroke="rgba(13, 238, 200, 0.5)"
-                stroke-width="8"
-                stroke-dasharray={perimeter}
-                r={radius}
-                cx="50"
-                cy="150"
-                transform="rotate(-90 100 100)"
-            />
-            </svg>
-        </div>);
-    
+                <svg className="dial">
+                <circle
+                    fill="transparent"
+                    stroke="rgba(13, 238, 200, 0.5)"
+                    strokeWidth="8"
+                    strokeDasharray={perimeter}
+                    r={this.radius}
+                    cx="50"
+                    cy="150"
+                    transform="rotate(-90 100 100)"
+                />
+                </svg>
+            </div>);
+    }  
 }
 
 /**class Timer {
@@ -107,6 +213,7 @@ export default function Timer({totalDuration}) {
         if (this.onStart) {
             this.onStart(this.timeRemaining);
         }
+        duration = totalDuration;
         this.tick();
         this.intervalId = setInterval(this.tick, 50 );
     }
