@@ -11,7 +11,7 @@
     "react-dom": "^16.12.0",
     "react-icon": "^1.0.0",
     "react-icons": "^3.10.0",
-    "react-scripts": "3.4.0"
+    "react-scripts": "5.0.1"
   },
   "scripts": {
     "deploy": "npm run build && gh-pages -d build",
